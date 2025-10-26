@@ -6,11 +6,11 @@ def cache(func: Callable) -> Callable:
     _cache = {}
 
     @wraps(func)
-    def wrapper(*args: Any) -> Any:
+    def wrapper(*args, **kwargs) -> Any:
 
         if args in _cache:
             print("Getting from cache")
-            return _cache[args]
+            return _cache[(args)]
 
         print("Calculating new result")
         result = func(*args)
