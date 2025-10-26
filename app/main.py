@@ -13,7 +13,7 @@ def cache(func: Callable) -> Callable:
             return _cache[(args, frozenset(kwargs.items()))]
 
         print("Calculating new result")
-        result = func(*args)
+        result = func(*args, **kwargs)
         _cache[(args, frozenset(kwargs.items()))] = result
         return result
 
