@@ -10,11 +10,11 @@ def cache(func: Callable) -> Callable:
 
         if args in _cache:
             print("Getting from cache")
-            return _cache[(args)]
+            return _cache[(args, frozenset(kwargs.items()))]
 
         print("Calculating new result")
         result = func(*args)
-        _cache[args] = result
+        _cache[(args, frozenset(kwargs.items()))] = result
         return result
 
     return wrapper
