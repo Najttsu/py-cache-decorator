@@ -8,7 +8,7 @@ def cache(func: Callable) -> Callable:
     @wraps(func)
     def wrapper(*args, **kwargs) -> Any:
 
-        if args in _cache:
+        if (args, frozenset(kwargs.items())) in _cache:
             print("Getting from cache")
             return _cache[(args, frozenset(kwargs.items()))]
 
